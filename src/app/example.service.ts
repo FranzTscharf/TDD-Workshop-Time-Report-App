@@ -1,0 +1,1 @@
+export class ExampleService { add(a:number,b:number){return a+b;} }
