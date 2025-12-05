@@ -9,5 +9,10 @@
     ],
     "strict": false,
     "esModuleInterop": true
-  }
+  },
+  "exclude": [
+    "test.ts",
+    "**/*.spec.ts",
+    "selenium"
+  ]
 }
