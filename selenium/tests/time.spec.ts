@@ -8,9 +8,7 @@ describe("Selenium smoke test", function () {
 
   before(async () => {
     // 1. Path to your downloaded chromedriver.exe
-    const chromeDriverPath = "C:\\Users\\Dozent\\Downloads\\TDD-Workshop-Time-Report-App-main\\selenium\\chromedriver.exe";
-
-    // <-- CHANGE THIS to your real path
+    const chromeDriverPath = "..\chromedriver.exe";
 
     // 2. Tell Selenium where the driver is
     const service = new chrome.ServiceBuilder(chromeDriverPath);
