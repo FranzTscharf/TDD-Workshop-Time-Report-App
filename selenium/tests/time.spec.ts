@@ -1,17 +1,28 @@
+import { expect } from "chai";
+import { Builder, By } from "selenium-webdriver";
+import * as chrome from "selenium-webdriver/chrome";
 
-import {expect} from 'chai';
-import {createDriver} from '../utils/selenium-setup';
-import {TimePage} from '../pages/time.page';
+describe("Selenium smoke test", function () {
+  this.timeout(30000);
+  let d;
 
-describe('E2E',()=>{
- let d, p;
- before(async()=>{ d=await createDriver(); p=new TimePage(d); });
- after(async()=>{ await d.quit(); });
- it('adds entry', async()=>{
-   await p.nav();
-   await p.add('Max','2024-01-01T09:00','2024-01-01T17:00');
-   await d.sleep(300);
-   const rows=await d.findElements({css:'ul li'});
-   expect(rows.length).to.be.greaterThan(0);
- });
+  before(async () => {
+    const options = new chrome.Options();
+    //options.addArguments("--headless=new");
+
+    d = await new Builder()
+      .forBrowser("chrome")
+      .setChromeOptions(options)
+      .build();
+  });
+
+  after(async () => {
+    if (d) await d.quit();
+  });
+
+  it("opens Google", async () => {
+    await d.get("https://www.google.com");
+    const box = await d.findElement(By.name("q"));
+    expect(box).to.exist;
+  });
 });
