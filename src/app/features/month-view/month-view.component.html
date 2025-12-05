@@ -1,0 +1,36 @@
+
+<div class="max-w-3xl mx-auto p-6 space-y-6">
+  <div class="bg-white rounded-xl shadow p-6 space-y-4">
+
+    <h2 class="text-xl font-semibold">Monatsübersicht</h2>
+
+    <div>
+      <label class="block text-sm font-medium mb-1">Monat auswählen</label>
+      <input type="month" class="border rounded-md px-3 py-2 shadow-sm focus:ring-2 focus:ring-blue-500"
+             [(ngModel)]="selectedMonth" (change)="load()"/>
+    </div>
+
+    <div *ngIf="entries.length===0" class="text-gray-500 text-sm">
+      Keine Einträge für diesen Monat.
+    </div>
+
+    <table *ngIf="entries.length>0" class="w-full text-sm">
+      <thead>
+        <tr class="border-b bg-gray-50 text-left">
+          <th class="p-3 font-medium">Datum</th>
+          <th class="p-3 font-medium">Stunden</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let d of (grouped | keyvalue)" class="border-b hover:bg-gray-50">
+          <td class="p-3">{{d.key}}</td>
+          <td class="p-3">{{d.value | number:'1.1-1'}} h</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <div *ngIf="entries.length>0" class="text-right font-semibold text-lg pt-4">
+      Gesamt: {{totalHours | number:'1.1-1'}} Stunden
+    </div>
+  </div>
+</div>

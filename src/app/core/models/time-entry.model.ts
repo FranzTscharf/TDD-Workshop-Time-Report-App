@@ -1,0 +1,1 @@
+export interface TimeEntry { id:string; employee:string; start:string; end:string; }

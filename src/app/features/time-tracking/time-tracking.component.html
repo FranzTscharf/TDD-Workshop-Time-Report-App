@@ -1,0 +1,60 @@
+
+<div class="max-w-2xl mx-auto p-6">
+  <div class="bg-white rounded-xl shadow p-6 space-y-6">
+
+    <div>
+      <h2 class="text-xl font-semibold tracking-tight">Zeiterfassung</h2>
+      <p class="text-sm text-gray-500">Arbeitszeiten erfassen und verwalten</p>
+    </div>
+
+    <div class="grid grid-cols-1 gap-4">
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Mitarbeiter</label>
+        <input class="w-full h-10 rounded-md border px-3 shadow-sm focus:ring-2 focus:ring-blue-500"
+               placeholder="Name" [(ngModel)]="employee"/>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Startzeit</label>
+        <input type="datetime-local" class="w-full h-10 rounded-md border px-3 shadow-sm focus:ring-2 focus:ring-blue-500"
+               [(ngModel)]="start"/>
+      </div>
+
+      <div>
+        <label class="block text-sm font-medium mb-1">Endzeit</label>
+        <input type="datetime-local" class="w-full h-10 rounded-md border px-3 shadow-sm focus:ring-2 focus:ring-blue-500"
+               [(ngModel)]="end"/>
+      </div>
+
+      <button (click)="add()" class="h-10 rounded-md bg-blue-600 text-white hover:bg-blue-700 shadow">
+        Speichern
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-8 bg-white rounded-xl shadow p-6">
+    <h3 class="text-lg font-semibold mb-4">Erfasste Zeiten</h3>
+
+    <div *ngIf="entries.length===0" class="text-gray-500 text-sm">Noch keine Einträge vorhanden.</div>
+
+    <table *ngIf="entries.length>0" class="w-full text-sm">
+      <thead><tr class="border-b bg-gray-50">
+        <th class="p-3">Mitarbeiter</th>
+        <th class="p-3">Start</th>
+        <th class="p-3">Ende</th>
+        <th class="p-3">Aktion</th>
+      </tr></thead>
+      <tbody>
+        <tr *ngFor="let e of entries" class="border-b hover:bg-gray-50">
+          <td class="p-3">{{e.employee}}</td>
+          <td class="p-3">{{e.start}}</td>
+          <td class="p-3">{{e.end}}</td>
+          <td class="p-3">
+            <button (click)="del(e.id)" class="text-red-600 hover:text-red-800">Löschen</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
